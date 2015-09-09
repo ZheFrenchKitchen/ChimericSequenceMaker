@@ -43,7 +43,7 @@ To build the standalone program using CMake and gcc under Linux:
 1 - Download  via git.
 
 ```bash
-git clone ..
+git clone https://github.com/ZheFrenchKitchen/ChimericGenomeMaker
 ```
 
 2 - Move inside downloaded directory : 

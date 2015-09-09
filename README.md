@@ -58,3 +58,11 @@ A directory call 'INSTALL' is created where you will find the executable under t
 ### Homebrew (preferred)
 
 TODO
+
+## How to use it
+
+This is a test. The program should compute basic stuffs as mean and sum calcul when you pass to the program one number.
+
+```bash
+./ChimericGenomeMaker [integer]
+```

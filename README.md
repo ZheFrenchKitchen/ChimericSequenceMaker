@@ -20,12 +20,14 @@ ChimericGenomeMaker has been developped in C++ by ZheFrench.
 * `src/main/static` - Static Library.
 * `src/main/shared` - Shared Library.
 
-## Pre-build
+## Prerequisites
+
+- The basic program build tools. On Ubuntu and Debian these are available in the meta-package build-essential. On other distributions, you may need to install the GNU C++ compiler separately. The package is going to have c++ or g++ in its name. If you can't find the equivalent of build-essential meta-package for your distribution, be sure to install the "make" utility as well.
+- CMake, the cross platform build system.
 
 On Mac OsX (using [homebrew](http://brew.sh/) :
 ```bash
-sudo brew install build-essential
-sudo brew install cmake 
+brew install cmake 
 ```
 
 On Linux (Ubuntu distribution) :

@@ -3,4 +3,4 @@ install
 build
 .cproject
 .project
-
+.settings

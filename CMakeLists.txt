@@ -47,11 +47,26 @@
     INSTALL(TARGETS calculMean DESTINATION "lib/shared")
     #MACOSX_RPATH is not specified for the following targets calcuMean
     
+   # "Link a target to given libraries."
+   find_package (Boost REQUIRED COMPONENTS system filesystem)
+   if (Boost_FOUND)
+        MESSAGE( STATUS "Boost_LIBRARIES FOUND         "  )   
+        include_directories("${Boost_INCLUDE_DIRS}")
+   endif ()
+    
+    #SET_TARGET_PROPERTIES(calculMean PROPERTIES LINKER_LANGUAGE CXX)
+    #SET_TARGET_PROPERTIES(calculSum PROPERTIES LINKER_LANGUAGE CXX)
+    
     #Build a stand alone program
     ADD_EXECUTABLE(ChimericGenomeMaker "${SOURCES_MAIN}")# "${SOURCES_STATIC}" "${SOURCES_SHARED}"
     
     TARGET_LINK_LIBRARIES(ChimericGenomeMaker calculMean) 
     TARGET_LINK_LIBRARIES(ChimericGenomeMaker calculSum)
+    
+     # Alternatively you could use ${Boost_LIBRARIES} here.
+    TARGET_LINK_LIBRARIES(ChimericGenomeMaker "${Boost_LIBRARIES}")
+
+    MESSAGE( STATUS "Boost_LIBRARIES:         " ${Boost_LIBRARIES} )
     
     INSTALL(TARGETS ChimericGenomeMaker DESTINATION bin)
    
@@ -62,6 +77,8 @@
                        COMMENT "Post-build is Running" VERBATIM
     )
    
+    #SET_TARGET_PROPERTIES(ChimericGenomeMaker PROPERTIES LINKER_LANGUAGE CXX)
+
 
    # If you want to share your lib and give description of the methods you need to make install & export header
     #INSTALL(FILES "${PROJECT_SOURCE_DIR}/include/static/calc_sum.h" DESTINATION include)
@@ -72,6 +89,7 @@
     
     MESSAGE( STATUS "CMAKE_INSTALL_NAME_DIR:         " ${CMAKE_INSTALL_NAME_DIR} )
     MESSAGE( STATUS "CMAKE_INSTALL_RPATH:         " ${CMAKE_INSTALL_RPATH} )
+    MESSAGE( STATUS "LINKER_LANGUAGE:         " ${LINKER_LANGUAGE} )
     
     # if you are building in-source, this is the same as CMAKE_SOURCE_DIR, otherwise 
     # this is the top level directory of your build tree 

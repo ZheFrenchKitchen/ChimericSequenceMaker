@@ -3,7 +3,8 @@
 #include <string.h>
 #include <stdio.h>
 #include <math.h>
-#include "../../include/main/test_main.h"
+#include "../../include/main/patch_dealer.h"
+#include "../../include/main/patch.h"
 
 int patch(int argc, char *argv[])
 {
@@ -21,12 +22,10 @@ int patch(int argc, char *argv[])
 	}
 	//If the resulting value of optind+1 is greater than argc, this indicates a missing option-argument
 	// yes we add a file
-	if (optind + 1 > argc) {
+	if (optind + 2 > argc) {
 
 		fprintf(stderr, "\n");
-
-		fprintf(stderr, "optind:   [%d] / [%d]\n\n",optind,argc);
-		fprintf(stderr, "Usage:   chimericGenomeMaker patch [options] </path/to/input.txt> \n\n");
+		fprintf(stderr, "Usage:   chimericGenomeMaker patch [options] </path/to/ListofPositionsToTransform.txt> </path/to/DirectoryContainingChromosomeFiles> \n\n");
 		fprintf(stderr, "Options: -a INT   blahblah [%d]\n", opt->a);
 		fprintf(stderr, "         -b INT   blahblah [%d]\n", opt->b);
 		fprintf(stderr, "         -H       blahblah \n");
@@ -34,8 +33,9 @@ int patch(int argc, char *argv[])
 
 		return 1;
 	}
-	fprintf(stderr, "fail 0\n");
-	fprintf(stderr, "optind:   [%d] / [%d]\n\n",optind,argc);
+
+	patcher(argv,&optind);
+
 	free(opt);
 
 	return 0;

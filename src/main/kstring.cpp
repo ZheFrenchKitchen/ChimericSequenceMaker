@@ -22,7 +22,9 @@ int ksprintf(kstring_t *s, const char *fmt, ...)
 		l = vsnprintf(s->s + s->l, s->m - s->l, fmt, ap);
 	}
 	va_end(ap);
+
 	s->l += l;
+
 	return l;
 }
 

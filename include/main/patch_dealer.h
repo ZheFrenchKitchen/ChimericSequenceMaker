@@ -1,5 +1,5 @@
-#ifndef TEST_MAIN_H
-#define TEST_MAIN_H
+#ifndef PATCH_DEALER_H
+#define PATCH_DEALER_H
 
 #include <stdint.h>
 
@@ -17,6 +17,5 @@ extern "C" {
 #ifdef __cplusplus
 }
 #endif
-
 
 #endif

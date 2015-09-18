@@ -43,12 +43,12 @@ static int usage()
 int main (int argc, char *argv[])
 {
 
-	extern char *bwa_pg;
 	int i, ret;
 	double t_real;
-	kstring_t pg = {0,0,0};
 	t_real = realtime();
 
+	// Don't understand what 'ksprintf' is used for
+	kstring_t pg = {0,0,0};
 	for (i = 1; i < argc; ++i) ksprintf(&pg, " %s", argv[i]);
 	bwa_pg = pg.s;
 
@@ -60,12 +60,15 @@ int main (int argc, char *argv[])
 			return 1;
 		}
 
+    err_fflush(stdout);
+    err_fclose(stdout);
+
     if (ret == 0) {
     		fprintf(stderr, "[%s] Version: %s\n", __func__, PACKAGE_VERSION);
     		fprintf(stderr, "[%s] CMD:", __func__);
     		for (i = 0; i < argc; ++i)
     			fprintf(stderr, " %s", argv[i]);
-    		fprintf(stderr, "\n[%s] Real time: %.3f sec; CPU: %.3f sec\n", __func__, realtime() - t_real, cputime());
+    		fprintf(stderr, "\n[%s] Real time: %.3f sec; CPU: %.3f sec\n\n", __func__, realtime() - t_real, cputime());
     	}
 
 	free(bwa_pg);

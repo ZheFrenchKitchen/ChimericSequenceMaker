@@ -16,9 +16,13 @@ extern "C" {
 #endif
 
 	//patch_options_t *patch_options_init();
-	void patcher(char *argv[],int *optind);
+	localisation_t *localisation_init(char *argv[],int *optind);
 	//void read_localisationFile();
 	void _count_locations_to_transform(FILE *file,int *p_lines);
+
+	void locs_print(localisation_t  *locs,int *nombre_elements);
+
+	void locs_destroy(localisation_t  *locs,int *nombre_elements);
 
 #ifdef __cplusplus
 }

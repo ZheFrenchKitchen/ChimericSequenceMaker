@@ -3,8 +3,15 @@
 #include <string.h>
 #include <stdio.h>
 #include <math.h>
+#include <string.h>
+#include <sys/stat.h>
+
 #include "../../include/main/patch_dealer.h"
-#include "../../include/main/patch.h"
+#include "../../include/main/localisation.h"
+#include "../../include/main/chromosome.h"
+
+
+void printer(std::multimap<std::time_t,boost::filesystem::path> pN);
 
 int patch(int argc, char *argv[])
 {
@@ -34,12 +41,91 @@ int patch(int argc, char *argv[])
 		return 1;
 	}
 
-	patcher(argv,&optind);
+	localisation_t *locs =  localisation_init(argv,&optind);
+
+	std::multimap<std::time_t,boost::filesystem::path> result_set = list_chromosomes(argv[optind +1]);
+	extern int nb_chr_file;
+	fprintf(stderr, " Nbr chromosomes [%d]\n", nb_chr_file);
+
+	 std::multimap<std::time_t,boost::filesystem::path>::iterator it = result_set.begin();
+	  while(it != result_set.end())
+	  {
+			//std::cout<<"Key = "<<it->first<<"    Value = "<<it->second<<std::endl;
+			std::cout<<"Path = "<<it->second<<std::endl;
+
+			FILE *file_ref;
+			char line[100];
+
+			ref = fopen(it->second.string().c_str(), "r");
+
+			int count = 0;
+
+				int r,s;
+				while((r=fgetc(ref))!=EOF) {
+
+					if(r=='>') {
+						fputc(r,stdout);
+						while((r=fgetc(ref))!=EOF && r!='\n') { fputc(r,stdout); }
+						printf("\n");
+						continue;
+					}
+
+					/* Print line feed to keep fasta file readable */
+					/* Only if we are not in [start, stop] */
+					if(isspace(r)) {
+						if ( count < start || count > stop ) {
+							fputc(r,stdout);
+						}
+						continue;
+					}
+
+					/* A,C,G,T or N has just been read */
+					++count;
+
+			   	    if (count<start) { fputc(r,stdout);  }
+
+			   	    else if (count==start) {
+			   	    	/* Insert the provided sequence here */
+			   	    	//while((s=fgetc(seq))!=EOF) { fputc(s,stdout);}
+			   	    	fputs(s,stdout)
+			   	    }
+			   	    	else if (count<=stop) { continue; }
+
+			   	    			else {fputc(r,stdout); }
+
+				}
+
+				fclose( seq );
+				fclose( ref );
+
+ 		fclose(file_ref);
+
+		it++;
+	  }
 
 	free(opt);
 
+
+	extern int nb_loc;
+
+	locs_print(locs,&nb_loc);
+	locs_destroy(locs,&nb_loc);
+
 	return 0;
 }
+
+//This method prints the vector
+void printer(std::multimap<std::time_t,boost::filesystem::path> pN,int *nb_chr)
+{
+	  std::multimap<std::time_t,boost::filesystem::path>::iterator it = pN.begin();
+	  while(it != pN.end())
+	  {
+	    std::cout<<"Key = "<<it->first<<"    Value = "<<it->second<<std::endl;
+	    it++;
+
+	  }
+}
+
 
 patch_options_t *patch_options_init()
 {

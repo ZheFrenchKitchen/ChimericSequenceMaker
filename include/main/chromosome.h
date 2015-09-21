@@ -1,0 +1,31 @@
+#ifndef CHROMOSOME_H
+#define CHROMOSOME_H
+
+#include <iostream>
+#include <map>
+#include <boost/filesystem.hpp>
+
+using namespace std;
+using namespace boost::filesystem;
+
+typedef struct Chromosome{
+	char *name,*header,*sequence;
+} Chromosome;
+
+	// Outside of externC because it uses boost library for C++ so the link stuff related won't be ok boy.
+	std::multimap<std::time_t,boost::filesystem::path> list_chromosomes (char * path_to_dir);
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+	Chromosome *chromosome_init(char *chrom_name_file_path);
+
+	void chromosome_destroy(Chromosome *chromosome);
+
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif

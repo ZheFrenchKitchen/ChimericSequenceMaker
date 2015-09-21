@@ -2,11 +2,8 @@
 #include <iostream>
 #include <stdlib.h>
 #include <math.h>
-#include <map>
-#include <boost/filesystem.hpp>
 
 using namespace std;
-using namespace boost::filesystem;
 
 #include "../../include/shared/calc_mean.h"
 #include "../../include/static/calc_sum.h"
@@ -17,6 +14,8 @@ using namespace boost::filesystem;
 #ifndef PACKAGE_VERSION
 #define PACKAGE_VERSION "1.0"
 #endif
+
+//valgrind --leak-check=yes ./install/bin/ChimericGenomeMaker patch -a 10 -b 13 /Users/JP/Desktop/positions.txt /kikou
 
 char *bwa_pg;
 
@@ -74,7 +73,10 @@ int main (int argc, char *argv[])
 	free(bwa_pg);
 
 	return ret;
+
 /*
+ * Old stuff i keep to have  a trace on how doing dynamic or static librairies
+ *
   double inputValue = atof(argv[1]);
   double outputValue = sqrt(inputValue);
 
@@ -84,47 +86,12 @@ int main (int argc, char *argv[])
   v1 = 5.2;
   v2 = 7.9;
 
-  boost::filesystem::path someDir("/Users/JP/Desktop/");
-  boost::filesystem::directory_iterator end_iter;
-  typedef std::multimap<std::time_t, boost::filesystem::path> result_set_t;
-  result_set_t result_set;
-
-  if ( boost::filesystem::exists(someDir) && boost::filesystem::is_directory(someDir))
-  {
-    for( boost::filesystem::directory_iterator dir_iter(someDir) ; dir_iter != end_iter ; ++dir_iter)
-    {
-      if (boost::filesystem::is_regular_file(dir_iter->status()) )
-      {
-        result_set.insert(result_set_t::value_type(boost::filesystem::last_write_time(dir_iter->path()), *dir_iter));
-      }
-    }
-  }
-
-//printer(result_set);
-  printer2(result_set);
-
   m  = mean(v1, v2);
-
   printf("The mean of %3.2f and %3.2f is %3.2f\n", v1, v2, m);
-
   m  = sum(v1, v2);
-
   printf("The sum of %3.2f and %3.2f is %3.2f\n", v1, v2, m);
 
-  return 0;*/
-}
-/*
-//This method prints the vector
-void printer(std::multimap<std::time_t,boost::filesystem::path> pN)
-{
-	std::cout <<"\n\nMultimap printer method"<<std::endl;
-	std::cout<<"Map size = "<<pN.size()<<std::endl;
-	std::multimap<std::time_t,boost::filesystem::path>::iterator it = pN.begin();
-	  while(it != pN.end())
-	  {
-	    std::cout<<"Key = "<<it->first<<"    Value = "<<it->second<<std::endl;
-	    it++;
-	  }
+  return 0;
+*/
 }
 
-*/

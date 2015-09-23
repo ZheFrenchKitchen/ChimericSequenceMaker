@@ -75,7 +75,7 @@ int main (int argc, char *argv[])
 	return ret;
 
 /*
- * Old stuff i keep to have  a trace on how doing dynamic or static librairies
+ * Old stuff i keep to have  a trace on how doing dynamic or static librairies with CMake
  *
   double inputValue = atof(argv[1]);
   double outputValue = sqrt(inputValue);

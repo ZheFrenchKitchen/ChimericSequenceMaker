@@ -5,13 +5,17 @@
 #include <math.h>
 #include <string.h>
 #include <sys/stat.h>
+#include <stdbool.h>
+#include <algorithm>
 
 #include "../../include/main/patch_dealer.h"
 #include "../../include/main/localisation.h"
 #include "../../include/main/chromosome.h"
 
+void printer(std::vector<boost::filesystem::path> pN);
 
-void printer(std::multimap<std::time_t,boost::filesystem::path> pN);
+// Not used
+bool is_value_in_vector(std::string item, std::vector<std::string> *vector);
 
 int patch(int argc, char *argv[])
 {
@@ -43,90 +47,109 @@ int patch(int argc, char *argv[])
 
 	localisation_t *locs =  localisation_init(argv,&optind);
 
-	std::multimap<std::time_t,boost::filesystem::path> result_set = list_chromosomes(argv[optind +1]);
-	extern int nb_chr_file;
-	fprintf(stderr, " Nbr chromosomes [%d]\n", nb_chr_file);
+	extern int nb_loc;
 
-	 std::multimap<std::time_t,boost::filesystem::path>::iterator it = result_set.begin();
-	  while(it != result_set.end())
-	  {
-			//std::cout<<"Key = "<<it->first<<"    Value = "<<it->second<<std::endl;
-			std::cout<<"Path = "<<it->second<<std::endl;
+
+	// Sorted by chr ans start
+	qsort(locs, nb_loc, sizeof(localisation_t), compare_locations);
+	locs_print(locs,&nb_loc);
+
+	// Update Locs with re-evaluated coordinated
+
+	std::vector<boost::filesystem::path> result_set = list_chromosomes(argv[optind +1]);
+
+	std::sort(result_set.begin(), result_set.end());
+
+	extern int nb_chr_file;
+	fprintf(stderr, "Nbr chromosomes [%d] \n", nb_chr_file);
+
+	std::vector<boost::filesystem::path>::iterator it = result_set.begin();
+	std::vector<std::string>  files_opened;
+
+	// FOREACH FILE_PATH
+	while(it != result_set.end())
+	{
+
+/*
+ * on s'en fout ici
+ if (is_value_in_vector(it->string(), &files_opened) ) {std::cout<<"O god Yeahhhhhh = "<<it->string()<<std::endl;}
+
+*/
+			files_opened.push_back(it->string());
+
+			std::cout<<"Path = "<<*it<<std::endl;
 
 			FILE *file_ref;
 			char line[100];
 
-			ref = fopen(it->second.string().c_str(), "r");
+			file_ref = fopen(it->string().c_str(), "r");
 
-			int count = 0;
+			int r;
+				while( (r=fgetc(file_ref) ) != EOF ) {
 
-				int r,s;
-				while((r=fgetc(ref))!=EOF) {
-
+					//The first line
 					if(r=='>') {
+
 						fputc(r,stdout);
-						while((r=fgetc(ref))!=EOF && r!='\n') { fputc(r,stdout); }
+						while( (r=fgetc(file_ref) ) !=EOF && r!='\n' ) { fputc(r,stdout); }
 						printf("\n");
 						continue;
 					}
 
-					/* Print line feed to keep fasta file readable */
-					/* Only if we are not in [start, stop] */
-					if(isspace(r)) {
-						if ( count < start || count > stop ) {
-							fputc(r,stdout);
-						}
-						continue;
-					}
-
-					/* A,C,G,T or N has just been read */
-					++count;
-
-			   	    if (count<start) { fputc(r,stdout);  }
-
-			   	    else if (count==start) {
-			   	    	/* Insert the provided sequence here */
-			   	    	//while((s=fgetc(seq))!=EOF) { fputc(s,stdout);}
-			   	    	fputs(s,stdout)
-			   	    }
-			   	    	else if (count<=stop) { continue; }
-
-			   	    			else {fputc(r,stdout); }
-
 				}
 
-				fclose( seq );
-				fclose( ref );
+			fclose(file_ref);
 
- 		fclose(file_ref);
+			// ICI JE DEVRAIS STOCKER MA SEQUENCE DANS UNE VARIABLE.
+			// SS ENTEND JE LUI DONNE DE LA MEMOIRE
+				// JE PARCOURS MES LOCS
+				// JE MODIFIE CETTE SEQUENCE POUR LES LOCS CORRESPONDANTES
+			// JE CREE UN FICHIER OU JE PRINTE CETTE SEQUENCE
+			// JE LIBERE LA MEMOIRE
 
 		it++;
 	  }
+	// Just Print open files
+	for(int i=0; i<files_opened.size(); ++i) std::cout << files_opened[i] << std::endl;
+
+
+ //printer(result_set);
 
 	free(opt);
 
-
-	extern int nb_loc;
-
-	locs_print(locs,&nb_loc);
 	locs_destroy(locs,&nb_loc);
+
 
 	return 0;
 }
 
-//This method prints the vector
-void printer(std::multimap<std::time_t,boost::filesystem::path> pN,int *nb_chr)
+// Not used
+// Tcheck presence of string value in std::vector<std::string>
+bool is_value_in_vector(std::string item, std::vector<std::string> *vec){
+
+    int i;
+    for (i = 0; i < vec->size(); i++) {
+    	if ( std::find(vec->begin(), vec->end(), item)!=vec->end() )
+    	    	  return true;
+    }
+    return false;
+
+}
+
+
+// This method prints the vector
+void printer(std::vector<boost::filesystem::path> pN)
 {
-	  std::multimap<std::time_t,boost::filesystem::path>::iterator it = pN.begin();
+	  std::vector<boost::filesystem::path>::iterator it = pN.begin();
 	  while(it != pN.end())
 	  {
-	    std::cout<<"Key = "<<it->first<<"    Value = "<<it->second<<std::endl;
+	    std::cout<<"Path = "<<*it<<std::endl;
 	    it++;
 
 	  }
 }
 
-
+// Allocation of memory for options
 patch_options_t *patch_options_init()
 {
 	// C++ need casting for malloc/calloc not C

@@ -10,6 +10,17 @@
 //#define NDEBUG if you want to remove assert
 int nb_loc = 0;
 
+int compare_locations(const void *objet1, const void *objet2)
+{
+    const localisation_t *instance1 = (localisation_t *) objet1;
+    const localisation_t *instance2 = (localisation_t *) objet2;
+
+    if (instance1->chromosome == instance2->chromosome){ return instance1->start - instance2->start;}
+
+    	else  return  strcmp(instance1->chromosome, instance2->chromosome)  ;
+
+}
+
 void _count_locations_to_transform(FILE *file,int *p_lines){
 
 	int ch = 0;

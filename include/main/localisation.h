@@ -15,6 +15,7 @@ typedef struct {
 extern "C" {
 #endif
 
+	int compare_locations(const void *objet1, const void *objet2);
 	//patch_options_t *patch_options_init();
 	localisation_t *localisation_init(char *argv[],int *optind);
 	//void read_localisationFile();

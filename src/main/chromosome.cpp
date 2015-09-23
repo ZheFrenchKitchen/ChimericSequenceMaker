@@ -12,11 +12,14 @@
 //}
 int nb_chr_file = 0;
 
-std::multimap<std::time_t,boost::filesystem::path> list_chromosomes(char *path_to_dir)
+
+
+
+std::vector<boost::filesystem::path> list_chromosomes(char *path_to_dir)
 {
 		  boost::filesystem::path someDir(path_to_dir);
 		  boost::filesystem::directory_iterator end_iter;
-		  typedef std::multimap<std::time_t, boost::filesystem::path> result_set_t;
+		  typedef std::vector<boost::filesystem::path> result_set_t;
 		  result_set_t result_set;
 
 		  if ( boost::filesystem::exists(someDir) && boost::filesystem::is_directory(someDir))
@@ -29,7 +32,7 @@ std::multimap<std::time_t,boost::filesystem::path> list_chromosomes(char *path_t
 
 		    	   if(strstr(cstr, "chr") != NULL) {
 		    		   nb_chr_file++;
-		    		   result_set.insert(result_set_t::value_type(boost::filesystem::last_write_time(dir_iter->path()), *dir_iter));
+		    		   result_set.push_back(*dir_iter);
 
 		    	  }
 
@@ -41,13 +44,13 @@ std::multimap<std::time_t,boost::filesystem::path> list_chromosomes(char *path_t
 
 }
 
-void chromosome_print(Chromosome *chromosome)
+void chromosome_print(chromosome *chromosome)
 {
 	printf("Chromosome : [%s]\n", chromosome->name);
 
 }
 
-void chromosome_destroy(Chromosome *chromosome)
+void chromosome_destroy(chromosome *chromosome)
 {
 		 assert(chromosome != NULL);
 

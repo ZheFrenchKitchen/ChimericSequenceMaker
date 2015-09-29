@@ -1,11 +1,11 @@
-ChimericGenomeMaker
+ChimericSequenceMaker
 =============
 
 A utility to convert a genome to a "chimeric" one (add/remove sequences at given positions).
 
-ChimericGenomeMaker has been developped in C++ by ZheFrench. 
+ChimericSequenceMaker has been developped in C++ by ZheFrench. 
 
-[ChimericGenomeMaker](https://github.com/ZheFrenchKitchen/#ChimericGenomeMaker) is a great tool but it's still in devloppment
+[ChimericSequenceMaker](https://github.com/ZheFrenchKitchen/#ChimericSequenceMaker) is a great tool but it's still in devloppment
 
 
 ## Features
@@ -45,7 +45,7 @@ To build the standalone program using CMake and gcc under Linux:
 1 - Download  via git.
 
 ```bash
-git clone https://github.com/ZheFrenchKitchen/ChimericGenomeMaker
+git clone https://github.com/ZheFrenchKitchen/ChimericSequenceMaker
 ```
 
 2 - Move inside downloaded directory : 
@@ -66,5 +66,5 @@ TODO
 This is a test. The program should compute basic stuffs as mean and sum calcul when you pass to the program one number.
 
 ```bash
-./ChimericGenomeMaker [integer]
+./ChimericSequenceMaker [integer]
 ```

@@ -15,7 +15,7 @@ int compare_locations(const void *objet1, const void *objet2)
     const localisation_t *instance1 = (localisation_t *) objet1;
     const localisation_t *instance2 = (localisation_t *) objet2;
 
-    if (instance1->chromosome == instance2->chromosome){ return instance1->start - instance2->start;}
+    if (strcmp(instance1->chromosome, instance2->chromosome) == 0 ){ return instance1->start - instance2->start;}
 
     	else  return  strcmp(instance1->chromosome, instance2->chromosome)  ;
 
@@ -52,6 +52,8 @@ void locs_destroy(localisation_t  *locs,int * nombre_elements)
 
 void locs_print(localisation_t  *locs,int * nombre_elements)
 {
+
+	printf("#########################################\n");
 	for (int i=0; i < *nombre_elements;i++){
 
 	 	printf("\n");

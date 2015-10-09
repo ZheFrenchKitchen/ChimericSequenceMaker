@@ -61,14 +61,20 @@ A directory call 'INSTALL' is created where you will find the executable under t
 
 ### Homebrew (preferred)
 
-TODO
+//TODO: I'd like to make a configuration file to install symply using homebrew.
 
 ## How to use it
 
-First Header | Second Header
------------- | -------------
-Content from cell 1 | Content from cell 2
-Content in the first column | Content in the second column
+Two Inputs : 
+- Path/To/Dir/ where the is your chromosomes as reference sequences to modify.
+- A file which describes upgrades (coordinates & positions)
+
+Chromosome | Start | End | Sequence Patch
+------------ | ------------- | ------------ | -------------
+chr2 | 5 | 9 | AAAAAAAAAA
+chr2 | 30 | 34| G
+chr2 | 50 | 54 | AAAAAAAAAAAAAAA
+
 ```bash
 ./install/bin/ChimericSequenceMaker patch /Users/JP/Desktop/positions.txt /Users/JP/Desktop/chr/
 ```

@@ -3,11 +3,13 @@ ChimericSequenceMaker
 
 A utility to convert a genome to a "chimeric" one (add/remove sequences at given positions).
 
-ChimericSequenceMaker has been developped in C++ by ZheFrench. 
+ChimericSequenceMaker has been developped for fun in C++ by ZheFrench. 
 
-This is a side project to discover C/C++ ecosystem and to play with CMake.
+This is a side project to discover C/C++ ecosystem and to play with CMake, Travis CI and other stuffs.
 
-[ChimericSequenceMaker](https://github.com/ZheFrenchKitchen/#ChimericSequenceMaker) is ,for sure , a great tool but it's still in developpment
+[ChimericSequenceMaker](https://github.com/ZheFrenchKitchen/#ChimericSequenceMaker) is ,for sure , a great tool but it's still in developpment.
+
+The main functionality should work correctly.
 
 
 ## Features
@@ -40,7 +42,7 @@ sudo apt-get install cmake
 
 ## Installation
 
-To build the standalone program using CMake and gcc under Linux:
+To build the standalone program using CMake under Linux:
 
 ### Manually
 
@@ -61,13 +63,13 @@ A directory call 'INSTALL' is created where you will find the executable under t
 
 ### Homebrew (preferred)
 
-//TODO: I'd like to make a configuration file to install symply using homebrew.
+//TODO: I'd like to make a configuration file to install symply using homebrew on MacOsX.
 
 ## How to use it
 
 Two Inputs : 
-- Path/To/Dir/ where the is your chromosomes as reference sequences to modify.
-- A file which describes upgrades (coordinates & positions)
+- Path/To/Dir/ where are your chromosomes used as reference sequences to modify.
+- A file which describes upgrades (coordinates & sequences)
 
 Chromosome | Start | End | Sequence Patch
 ------------ | ------------- | ------------ | -------------
@@ -76,5 +78,5 @@ chr2 | 30 | 34| G
 chr2 | 50 | 54 | AAAAAAAAAAAAAAA
 
 ```bash
-./install/bin/ChimericSequenceMaker patch /Users/JP/Desktop/positions.txt /Users/JP/Desktop/chr/
+./install/bin/ChimericSequenceMaker patch /Path/To/Dir/positions.txt /Path/To/Dir/chr/
 ```

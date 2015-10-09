@@ -1,0 +1,11 @@
+language: cpp
+compiler:
+  - clang
+  - g++
+before_install:
+  # - sudo apt-get install g++ libtool pkg-config libfftw3-dev libboost-dev libcppunit-dev libz-dev lcov libgsl0-dev
+    - sudo apt-get install libboost-dev
+script:
+  - ./build.sh
+after_success:
+  - ./bash/post-build.sh KIKOU

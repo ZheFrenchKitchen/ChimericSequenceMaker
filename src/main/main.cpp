@@ -29,7 +29,6 @@ static int usage()
 	fprintf(stderr, "Version: %s\n", PACKAGE_VERSION);
 	fprintf(stderr, "Usage:   chimericGenomeMaker <command> [options]\n\n");
 	fprintf(stderr, "Command: patch         patch sequences of the chromosomes \n");
-	fprintf(stderr, "         reshape       modify sequence length of each line in chromosome file\n");
 	fprintf(stderr, "\n");
 	fprintf(stderr,
 "Note: To use CGM, you need to first download each chromosome sequence for your genome of interest.\n"

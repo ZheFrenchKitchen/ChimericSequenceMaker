@@ -4,7 +4,7 @@
 #include <stdint.h>
 
 typedef struct {
-	int a, b, h;
+	int g;
 } patch_options_t;
 
 #ifdef __cplusplus

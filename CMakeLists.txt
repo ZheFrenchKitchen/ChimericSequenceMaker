@@ -17,10 +17,10 @@
     ENDIF()
     
     CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
-    PROJECT(ChimericGenomeMaker)
+    PROJECT(ChimericSequenceMaker)
     
-    SET (ChimericGenomeMaker_VERSION_MAJOR 1)
-    SET (ChimericGenomeMaker_VERSION_MINOR 0)
+    SET (ChimericSequenceMaker_VERSION_MAJOR 1)
+    SET (ChimericSequenceMaker_VERSION_MINOR 0)
     
     #used by makefile users in order to install software at non-default location
     #make DESTDIR=/home/john install --> prepended with the DESTDIR value
@@ -58,17 +58,17 @@
     #SET_TARGET_PROPERTIES(calculSum PROPERTIES LINKER_LANGUAGE CXX)
     
     #Build a stand alone program
-    ADD_EXECUTABLE(ChimericGenomeMaker "${SOURCES_MAIN}")# "${SOURCES_STATIC}" "${SOURCES_SHARED}"
+    ADD_EXECUTABLE(ChimericSequenceMaker "${SOURCES_MAIN}")# "${SOURCES_STATIC}" "${SOURCES_SHARED}"
     
-    TARGET_LINK_LIBRARIES(ChimericGenomeMaker calculMean) 
-    TARGET_LINK_LIBRARIES(ChimericGenomeMaker calculSum)
+    TARGET_LINK_LIBRARIES(ChimericSequenceMaker calculMean) 
+    TARGET_LINK_LIBRARIES(ChimericSequenceMaker calculSum)
     
      # Alternatively you could use ${Boost_LIBRARIES} here.
-    TARGET_LINK_LIBRARIES(ChimericGenomeMaker "${Boost_LIBRARIES}")
+    TARGET_LINK_LIBRARIES(ChimericSequenceMaker "${Boost_LIBRARIES}")
 
     MESSAGE( STATUS "Boost_LIBRARIES:         " ${Boost_LIBRARIES} )
     
-    INSTALL(TARGETS ChimericGenomeMaker DESTINATION bin)
+    INSTALL(TARGETS ChimericSequenceMaker DESTINATION bin)
    
     ADD_CUSTOM_COMMAND(TARGET calculMean
                        POST_BUILD

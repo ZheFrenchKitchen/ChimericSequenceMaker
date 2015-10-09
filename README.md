@@ -5,7 +5,9 @@ A utility to convert a genome to a "chimeric" one (add/remove sequences at given
 
 ChimericSequenceMaker has been developped in C++ by ZheFrench. 
 
-[ChimericSequenceMaker](https://github.com/ZheFrenchKitchen/#ChimericSequenceMaker) is a great tool but it's still in devloppment
+This is a side project to discover C/C++ ecosystem and to play with CMake.
+
+[ChimericSequenceMaker](https://github.com/ZheFrenchKitchen/#ChimericSequenceMaker) is ,for sure , a great tool but it's still in developpment
 
 
 ## Features
@@ -63,8 +65,10 @@ TODO
 
 ## How to use it
 
-This is a test. The program should compute basic stuffs as mean and sum calcul when you pass to the program one number.
-
+First Header | Second Header
+------------ | -------------
+Content from cell 1 | Content from cell 2
+Content in the first column | Content in the second column
 ```bash
-./ChimericSequenceMaker [integer]
+./install/bin/ChimericSequenceMaker patch /Users/JP/Desktop/positions.txt /Users/JP/Desktop/chr/
 ```

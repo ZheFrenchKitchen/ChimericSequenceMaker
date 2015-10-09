@@ -4,18 +4,15 @@
 #include <ctype.h>
 #include <assert.h>
 
-#include "../../include/main/chromosome.h"
+#include "../../include/main/sequence.h"
 
 //Chromosome *chromosome_init(char *chrom_name_file_path){
 
 //	return;
 //}
-int nb_chr_file = 0;
+int nb_file = 0;
 
-
-
-
-std::vector<boost::filesystem::path> list_chromosomes(char *path_to_dir)
+std::vector<boost::filesystem::path> list_sequences(char *path_to_dir)
 {
 		  boost::filesystem::path someDir(path_to_dir);
 		  boost::filesystem::directory_iterator end_iter;
@@ -29,9 +26,9 @@ std::vector<boost::filesystem::path> list_chromosomes(char *path_to_dir)
 		      if (boost::filesystem::is_regular_file(dir_iter->status()) )
 		      {
 		    	  const char *cstr = dir_iter->path().stem().string().c_str();
-
-		    	   if(strstr(cstr, "chr") != NULL) {
-		    		   nb_chr_file++;
+		    	  // user can define 3 types of sequence reference followed by a number
+		    	   if ( (strstr(cstr, "chr") != NULL) or (strstr(cstr, "exon") != NULL) or (strstr(cstr, "seq") != NULL) ){
+		    		   nb_file++;
 		    		   result_set.push_back(*dir_iter);
 
 		    	  }
@@ -44,18 +41,18 @@ std::vector<boost::filesystem::path> list_chromosomes(char *path_to_dir)
 
 }
 
-void chromosome_print(chromosome *chromosome)
+void sequence_reference_print(sequence *sequence)
 {
-	printf("Chromosome : [%s]\n", chromosome->name);
+	printf("SequenceReference : [%s]\n", sequence->name);
 
 }
 
-void chromosome_destroy(chromosome *chromosome)
+void  sequence_destroy(sequence *sequence)
 {
-		 assert(chromosome != NULL);
+		 assert(sequence != NULL);
 
-		 free(chromosome->name);
-		 free(chromosome->sequence);
+		 free(sequence->name);
+		 free(sequence->atgc_suite);
 
-	free(chromosome);
+	free(sequence);
 }

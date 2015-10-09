@@ -3,7 +3,7 @@ ChimericSequenceMaker
 
 A utility to convert a genome to a "chimeric" one (add/remove sequences at given positions).
 
-ChimericSequenceMaker has been developped for fun in C++ by ZheFrench. 
+ChimericSequenceMaker has been developped for fun in C++ by ZheFrench :chicken:. 
 
 This is a side project to discover C/C++ ecosystem and to play with CMake, Travis CI and other stuffs.
 
@@ -61,7 +61,7 @@ Execute :
 
 A directory call 'INSTALL' is created where you will find the executable under the bin directory.
 
-### Homebrew (preferred)
+### Homebrew 
 
 //TODO: I'd like to make a configuration file to install symply using homebrew on MacOsX.
 

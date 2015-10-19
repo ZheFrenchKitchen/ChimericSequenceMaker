@@ -1,7 +1,9 @@
 ChimericSequenceMaker
 =============
 
-![ChimericSequenceMaker Logo](/ressources/LOGO-ChimericSequenceTransformer.png){: style="float:right"}
+<p align="center">
+![ChimericSequenceMaker Logo](/ressources/LOGO-ChimericSequenceTransformer.png)
+</p>
 
 A utility to convert a genome to a "chimeric" one (add/remove sequences at given positions).
 

@@ -38,7 +38,7 @@ int patch(int argc, char *argv[])
 
 		fprintf(stderr, "\n");
 		fprintf(stderr, "Usage:   chimericSequenceMaker patch [options] </path/to/ListofPositionsToTransform.txt> </path/to/DirectoryContainingSequenceReferenceFiles> \n\n");
-		fprintf(stderr, "Options: -g  Transform genetic coordinates in a file located in the same directory as </path/to/ListofPositionsToTransform.txt> [%d]\n", opt->g);
+		//fprintf(stderr, "Options: -g  Transform genetic coordinates in a file located in the same directory as </path/to/ListofPositionsToTransform.txt> [%d]\n", opt->g);
 		fprintf(stderr, "\n");
 
 		return 1;
@@ -58,7 +58,7 @@ int patch(int argc, char *argv[])
 
 		if (boost::filesystem::exists(path_to_output+"/genes.txt")==true){ is_gene_file_created=1;	}
 
-			else printf("genes.txt doensn't exist.\n");
+			else printf("genes.txt doesn't exist.\n");
 	}
 
 	// Class variable (incremented each time there is a line - see localisation.h)

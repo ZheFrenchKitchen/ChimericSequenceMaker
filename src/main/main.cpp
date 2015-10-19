@@ -7,7 +7,6 @@ using namespace std;
 
 #include "../../include/shared/calc_mean.h"
 #include "../../include/static/calc_sum.h"
-#include "../../include/main/foo.h"
 #include "../../include/main/kstring.h"
 #include "../../include/main/utils.h"
 
@@ -20,6 +19,7 @@ using namespace std;
 char *bwa_pg;
 
 int patch(int argc, char *argv[]);
+int extract(int argc, char *argv[]);
 
 /*void printer(std::multimap<std::time_t,boost::filesystem::path> pN);*/
 static int usage()
@@ -28,7 +28,8 @@ static int usage()
 	fprintf(stderr, "Program: chimericGenomeMaker \n");
 	fprintf(stderr, "Version: %s\n", PACKAGE_VERSION);
 	fprintf(stderr, "Usage:   chimericGenomeMaker <command> [options]\n\n");
-	fprintf(stderr, "Command: patch         patch sequences of the chromosomes \n");
+	fprintf(stderr, "Command: patch         modify sequence's content\n");
+	fprintf(stderr, "Command: extract       extract specific sequences\n");
 	fprintf(stderr, "\n");
 	fprintf(stderr,
 "Note: To use CGM, you need to first download each chromosome sequence for your genome of interest.\n"
@@ -53,6 +54,8 @@ int main (int argc, char *argv[])
     if (argc < 2) return usage();
 
 	else if (strcmp(argv[1], "patch") == 0) ret = patch(argc-1, argv+1);
+	else if (strcmp(argv[1], "extract") == 0) ret = extract(argc-1, argv+1);
+
 	else {
 			fprintf(stderr, "[main] unrecognized command '%s'\n", argv[1]);
 			return 1;

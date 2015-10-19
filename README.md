@@ -1,6 +1,8 @@
 ChimericSequenceMaker
 =============
 
+![ChimericSequenceMaker Logo](/ressources/LOGO-GenomeTransformer.png)
+
 A utility to convert a genome to a "chimeric" one (add/remove sequences at given positions).
 
 ChimericSequenceMaker has been developped for fun in C++ by ZheFrench :chicken:. 
@@ -74,7 +76,7 @@ A directory call 'INSTALL' is created where you will find the executable under t
 
 ```
 
-1 - Get Modified Genome.
+__1 - Get Modified Genome.__
 
 Two Inputs : 
 - Path/To/Dir/ where are your chromosomes used as reference sequences to modify.
@@ -95,7 +97,8 @@ chr2 | 50 | 54 | AAAAAAAAAAAAAAA
 ./install/bin/ChimericSequenceMaker patch /Path/To/Dir/positions.txt /Path/To/Dir/chr/
 
 ```
-2 -Extract Sequence.
+
+__2 -Extract Sequence.__
 
 Two Inputs : 
 - Path/To/Dir/ where are your modified chromosomes .
@@ -115,11 +118,13 @@ chr2 | 50 | 54 | CHR2
 ## Concat Extraction ##
 cat /youOutputDir/*.fa > yourNewGenome.fa
 
-3 - Third Party.
+```
+
+__3 - Third Party.__
 
 Once you have modified your genome and concat as you wish you several sequences, then you can make a new reference genome as described [here](http://gatkforums.broadinstitute.org/discussion/2798/howto-prepare-a-reference-for-use-with-bwa-and-gatk
 )).
-For example :
+**For example :**
 
 ```bash
 

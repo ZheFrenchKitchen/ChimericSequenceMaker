@@ -84,11 +84,11 @@ Two Inputs :
 - Path/To/Dir/ where are your chromosomes used as reference sequences to modify.
 - A file which describes upgrades (coordinates & sequences)
 
-Chromosome | Start | End | Sequence Patch
------------- | ------------- | ------------ | -------------
-chr2 | 5 | 9 | AAAAAAAAAA
-chr2 | 30 | 34| G
-chr2 | 50 | 54 | AAAAAAAAAAAAAAA
+Chromosome | Start | End | Sequence Patch | Name of Your Region
+------------ | ------------- | ------------ | ------------ | -------------
+chr2 | 5 | 9 | AAAAAAAAAA |  ATXN3
+chr2 | 30 | 34| G | REGION_2300_230012
+chr2 | 50 | 54 | AAAAAAAAAAAAAAA  | CHR2
 
 ```bash
 
@@ -100,17 +100,17 @@ chr2 | 50 | 54 | AAAAAAAAAAAAAAA
 
 ```
 
-__2 -Extract Sequence.__
+__2 - Extract Sequence.__
 
 Two Inputs : 
 - Path/To/Dir/ where are your modified chromosomes .
 - A file which describes upgrades (Coordinates & Name of Your Region Derived from step 1)
 
-Chromosome | Start | End | Name of Your Region
------------- | ------------- | ------------ | -------------
-chr2 | 5 | 9 | ATXN3
-chr2 | 30 | 34| REGION_2300_230000
-chr2 | 50 | 54 | CHR2
+Chromosome | Start | End | Sequence Patch | Name of Your Region
+------------ | ------------- | ------------ | ------------ | -------------
+chr2 | 5 | 9 | AAAAAAAAAA |  ATXN3
+chr2 | 30 | 34| G | REGION_2300_230012
+chr2 | 50 | 54 | AAAAAAAAAAAAAAA  | CHR2
 
 ```bash
 

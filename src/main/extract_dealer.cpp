@@ -106,11 +106,11 @@ int extract(int argc, char *argv[])
 
 		std::string substring_sequence = sequence.substr (locs[i].start-1,locs[i].end-locs[i].start+1);
 
-		std::string output_new_sequence =    dir.string()+"/"+locs[i].sequence+".fa";
+		std::string output_new_sequence =    dir.string()+"/"+locs[i].region_name+".fa";
 		FILE *new_sequence_p = fopen(output_new_sequence.c_str(), "w");
 		fprintf(new_sequence_p, ">");
 
-		fprintf(new_sequence_p, "%s\n",locs[i].sequence);
+		fprintf(new_sequence_p, "%s\n",locs[i].region_name);
 
 		for ( int index = 0 ; index < substring_sequence.length(); index+=50)   fprintf(new_sequence_p, "%s\n", substring_sequence.substr(index,50) .c_str());
 		fclose(new_sequence_p);
